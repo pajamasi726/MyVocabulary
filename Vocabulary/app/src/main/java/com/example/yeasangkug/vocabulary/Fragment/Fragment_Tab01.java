@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.yeasangkug.vocabulary.Adapter.Adapter_WordList;
+import com.example.yeasangkug.vocabulary.DTO.Item_Word;
 import com.example.yeasangkug.vocabulary.R;
 
 /**
@@ -26,6 +28,7 @@ public class Fragment_Tab01 extends Fragment{
     private View mView;
 
     private ListView mListView;
+    private Adapter_WordList mAdapter;
     private ImageButton mBtnSearch;
     private EditText mEditInput;
 
@@ -36,14 +39,14 @@ public class Fragment_Tab01 extends Fragment{
 
         init_resource();
 
+        init_ListView();
+
         return mView;
     }
 
     private void init_resource()
     {
         mContext = this.getActivity();
-
-        mListView = (ListView)mView.findViewById(R.id.list_tab01_wordlist);
         mBtnSearch = (ImageButton)mView.findViewById(R.id.btn_tab01_search);
         mEditInput = (EditText)mView.findViewById(R.id.edt_tab01_input);
 
@@ -53,6 +56,20 @@ public class Fragment_Tab01 extends Fragment{
                 Log.i(TAG,"onClick");
             }
         });
+    }
+
+    private void init_ListView()
+    {
+        mListView = (ListView)mView.findViewById(R.id.list_tab01_wordlist);
+
+        mAdapter = new Adapter_WordList();
+        mListView.setAdapter(mAdapter);
+
+        Item_Word item = new Item_Word("Apple","사과");
+
+        mAdapter.addData(item);
+
+        mAdapter.notifyDataSetChanged();
     }
 
 

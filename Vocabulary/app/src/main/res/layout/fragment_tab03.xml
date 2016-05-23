@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/edt_tab03_word"
+    android:ems="12"
+    android:hint="단어를 입력 하세요"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true" />
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="세 번째 탭"
-        android:id="@+id/textView" />
-</LinearLayout>
+        android:id="@+id/edt_tab03_mean"
+        android:ems="12"
+        android:hint="뜻을 입력 하세요"
+        android:layout_below="@+id/edt_tab03_word"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가 하기"
+        android:background="@drawable/button_selector" style="@style/ButtonText"
+        android:id="@+id/btn_tab03_add"
+        android:layout_below="@+id/edt_tab03_mean"
+        android:layout_alignLeft="@+id/edt_tab03_mean"
+        android:layout_alignStart="@+id/edt_tab03_mean"
+        android:layout_alignRight="@+id/edt_tab03_mean"
+        android:layout_alignEnd="@+id/edt_tab03_mean"
+        />
+</RelativeLayout>
