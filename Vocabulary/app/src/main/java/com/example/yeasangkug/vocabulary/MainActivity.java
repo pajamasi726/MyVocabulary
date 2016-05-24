@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.yeasangkug.vocabulary.Adapter.Adapter_ViewPager;
+import com.example.yeasangkug.vocabulary.DB.DBManager;
 import com.example.yeasangkug.vocabulary.Fragment.Fragment_Tab01;
 import com.example.yeasangkug.vocabulary.Fragment.Fragment_Tab02;
 import com.example.yeasangkug.vocabulary.Fragment.Fragment_Tab03;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
 
+    private DBManager mDbManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         init_setup();
 
         init_setup_icon();
+
+        mDbManager = DBManager.get_DbManager(this);
 
     }
 
@@ -61,4 +66,10 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.getTabAt(2).setIcon(R.drawable.write);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mDbManager != null)
+            mDbManager.DB_Close();
+    }
 }

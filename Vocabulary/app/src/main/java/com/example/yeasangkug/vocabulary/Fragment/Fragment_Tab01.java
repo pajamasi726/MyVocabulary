@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.yeasangkug.vocabulary.Adapter.Adapter_WordList;
+import com.example.yeasangkug.vocabulary.DB.DBManager;
 import com.example.yeasangkug.vocabulary.DTO.Item_Word;
 import com.example.yeasangkug.vocabulary.R;
 
@@ -41,6 +42,8 @@ public class Fragment_Tab01 extends Fragment{
 
         init_ListView();
 
+        update_ListView();
+
         return mView;
     }
 
@@ -64,13 +67,24 @@ public class Fragment_Tab01 extends Fragment{
 
         mAdapter = new Adapter_WordList();
         mListView.setAdapter(mAdapter);
-
-        Item_Word item = new Item_Word("Apple","사과");
-
-        mAdapter.addData(item);
-
-        mAdapter.notifyDataSetChanged();
     }
 
+    private void update_ListView()
+    {
+        if(mAdapter == null)
+            return;
+        DBManager dbmanager = DBManager.get_DbManager(getActivity());
+        mAdapter.setList(dbmanager.allData());
+        mAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if(isVisibleToUser){
+            update_ListView();
+        }
+
+        super.setUserVisibleHint(isVisibleToUser);
+    }
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.yeasangkug.vocabulary.DB.DBManager;
 import com.example.yeasangkug.vocabulary.R;
 
 /**
@@ -45,6 +46,17 @@ public class Fragment_Tab03 extends Fragment{
             @Override
             public void onClick(View view) {
                 Log.i(TAG,"Fragment 03 추가 버튼 클릭");
+
+                String word = mEdt_Word.getText().toString();
+                String mean = mEdt_Mean.getText().toString();
+
+
+                DBManager db_manager = DBManager.get_DbManager(getActivity());
+
+                db_manager.insert(word, mean);
+
+                mEdt_Word.setText("");
+                mEdt_Mean.setText("");
             }
         });
 

@@ -36,6 +36,12 @@ public class Adapter_WordList extends BaseAdapter{
         mAdapter = this;
     }
 
+
+    public void setList(ArrayList<Item_Word> data)
+    {
+        this.data = data;
+    }
+
     public void addData(Item_Word data)
     {
         Log.i(TAG,"데이터 추가");
